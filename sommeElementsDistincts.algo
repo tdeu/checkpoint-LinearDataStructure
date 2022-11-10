@@ -1,0 +1,36 @@
+ALGORITHM sommeElementsDistincts;
+VAR
+    j: INTEGER:=0;
+    i: INTEGER:=0;
+    sum: INTEGER:=0;
+    etat: BOOLEAN;
+    ensemble1: ARRAY_OF CHAR[4];
+    ensemble2: ARRAY_OF CHAR[5];
+BEGIN
+    etat:=false;
+    ensemble1:={3, 1, 7, 9};
+    ensemble2:={2, 4, 1, 9, 3};
+    FOR i FROM 0 TO ensemble1.length-1 STEP 1 DO
+        FOR j FROM 0 TO ensemble2.length-1 STEP 1  DO
+            IF (ensemble1[i]==ensemble2[j]) THEN
+                etat:=true;
+            END_IF
+        END_FOR 
+        IF (etat==false) THEN
+            sum = sum + ensemble1[i];
+        END_IF
+        etat:=false;
+    END_FOR
+    FOR j FROM 0 TO ensemble2.length-1 STEP 1  DO
+        FOR i FROM 0 TO ensemble1.length-1 STEP 1 DO
+            IF (ensemble2[j]==ensemble1[i]) THEN
+                etat:=true;
+            END_IF
+        END_FOR 
+        IF (etat==false) THEN
+            sum = sum + ensemble2[j];
+        END_IF
+        etat:=false;
+    END_FOR
+    WRITE("la somme des elements uniques est ",sum);
+END
